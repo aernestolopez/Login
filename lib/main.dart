@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+
 import 'package:flutter/material.dart';
+import 'package:login/terminos.dart';
 
 void main() => runApp(MiApp());
 
@@ -28,17 +30,18 @@ class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: cuerpo() 
+        body: cuerpo(context) 
     );
   }
 }
 
 
-Widget cuerpo(){
+Widget cuerpo(BuildContext context){
   return Container(
     decoration: BoxDecoration(
-      image:DecorationImage(image: NetworkImage("https://r1.ilikewallpaper.net/iphone-8-plus-wallpapers/download-148439/arcane-league-of-legends.jpg"),
+      image:DecorationImage(image: NetworkImage("https://cdna.artstation.com/p/assets/images/images/043/233/328/large/piscesgraphics-jinx-splash-ss.jpg?1636667954"),
         fit: BoxFit.cover
+        
         )
       ),
       child: Center(
@@ -48,7 +51,8 @@ Widget cuerpo(){
             nombre(),
             campoUsuario(),
             campoContrasenia(),
-            botonEntrar()
+            SizedBox(height:10,),
+            botonEntrar(context)
 
           ],
           ),
@@ -63,11 +67,14 @@ Widget nombre(){
 Widget campoUsuario(){
   return Container(
     padding: EdgeInsets.symmetric(horizontal:10, vertical: 5),
-    child: TextField(
-      decoration: InputDecoration(
-        hintText: "User",
-        fillColor: Colors.white,
-        filled: true
+    child: SizedBox(
+      width: 250.0,
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: "User",
+          fillColor: Colors.white,
+          filled: true
+        ),
       ),
     ),
   );
@@ -76,25 +83,33 @@ Widget campoUsuario(){
 Widget campoContrasenia(){
   return Container(
     padding: EdgeInsets.symmetric(horizontal:10, vertical: 5),
-    child: TextField(
-      obscureText:true,
-      decoration: InputDecoration(
-        hintText: "Password",
-        fillColor: Colors.white,
-        filled: true
+    child: SizedBox(
+      width: 250.0,
+      child: TextField(
+        obscureText:true,
+        decoration: InputDecoration(
+          hintText: "Password",
+          fillColor: Colors.white,
+          filled: true
+        ),
       ),
     ),
   );
 }
 
-Widget botonEntrar(){
+Widget botonEntrar(BuildContext context){
   return TextButton(
-    onPressed: (){},
+    onPressed: (){
+     Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context)=> const Pagina()),
+      );
+    },
     style: TextButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: Colors.blue,
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10)
       ),
-    child: Text("Entrar"),
+    child: Text("Entrar", style: TextStyle(fontSize: 25)),
   );
 }
